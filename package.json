@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/HoatkNguyen123/hoand_awesome_chat#readme",
   "dependencies": {
+    "bluebird": "^3.5.3",
+    "ejs": "^2.5.7",
     "express": "^4.17.1",
+    "express-ejs-extend": "0.0.1",
+    "mongodb": "^3.6.0",
     "mongoose": "^4.13.9"
   },
   "devDependencies": {
