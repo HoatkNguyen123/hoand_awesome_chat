@@ -11,4 +11,6 @@ let ContactSchema = new Schema({
   deletedAt: { type: Number, default: null }
 });
 
+
+
 module.exports = mongoose.model("contact", ContactSchema);
