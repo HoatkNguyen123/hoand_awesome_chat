@@ -1,5 +1,5 @@
 let getHome = (req, res) => {
-  return res.render("auth/loginRegister");
+  return res.render("main/home/home");
 };
 
 module.exports = {
