@@ -1,21 +1,17 @@
 import express from "express";
 import connectDB from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
+import initRoutes from "./routes/web"; 
+
+
+
 let app = express();
 
 connectDB();
 
 configViewEngine(app);
 
-app.get("/", (req, res) => {
-  return res.render("main/master");
-});
-
-app.get("/login-register", (req, res) => {
-  return res.render("auth/loginRegister");
-});
-
-
+initRoutes(app);
 
 
 let hostname = 'localhost';
