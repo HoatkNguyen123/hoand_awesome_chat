@@ -6,22 +6,27 @@ export const transValidation = {
 };
 
 export const transErrors = {
-  account_in_user : "Email nay da dc su dung",
+  account_in_user: "Email nay da dc su dung",
   account_remove: "Tai khoan da bi xoa khoi he thong, vui long lien he voi bo phan ho tro",
   account_not_active: "Email da dc dang ki nhung chua kich hoat tai khoan, vui long kiem tra email cua ban hoac lien he voi bo phan ho tro",
-  token_undefined : "Token khong ton tai",
+  token_undefined: "Token khong ton tai",
+  login_failed: "Sai tai khoan hoac mat khau",
+  server_error: "Co loi tren he thong, vui long lien he den bo phan ho tro. Xin cam on!!!"
 };
 
 export const tranSuccess = {
-  userCreated : (userEmail) => {
+  userCreated: (userEmail) => {
     return `Tai khoan <strong>${userEmail}</strong> da duoc tao, vui long kiem tra email cua ban de kich hoat tai khoan`;
   },
-  account_active: "Kich hoat tai khoan thanh cong, ban co the dang nhap vao ung dung"
+  account_active: "Kich hoat tai khoan thanh cong, ban co the dang nhap vao ung dung",
+  loginSuccess: (username) =>{
+    return `Xin chao ${username}, chuc ban mot ngay tot lanh`;
+  },
 };
 
 export const tranMail = {
   subject: 'Awesome chat: Xac nhan kich hoat tai khoan!!!',
-  template: (linkVerify) =>{
+  template: (linkVerify) => {
     return `
     <h2> Ban da nhan duoc email nay vi da dang ky tai khoan tren ung dung Awesome chat </h2>
     <h3> Vui long click vao lien ket ben duoi de kich hoat tai khoan truoc khi dang nhap </h3>
@@ -29,5 +34,5 @@ export const tranMail = {
     <h4> Neu email nay la nham lan, hay bo qua no</h4>
     `;
   },
-  send_failed : 'Co loi trong qua trinh gui email, vui long lien he lai voi bo phan ho tro',
+  send_failed: 'Co loi trong qua trinh gui email, vui long lien he lai voi bo phan ho tro',
 };
