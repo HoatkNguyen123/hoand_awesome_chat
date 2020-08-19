@@ -22,6 +22,7 @@ export const tranSuccess = {
   loginSuccess: (username) =>{
     return `Xin chao ${username}, chuc ban mot ngay tot lanh`;
   },
+  logoutSuccess: "Dang xuat tai khoan thanh cong",
 };
 
 export const tranMail = {
