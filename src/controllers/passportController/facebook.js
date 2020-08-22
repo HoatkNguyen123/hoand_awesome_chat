@@ -7,7 +7,7 @@ let facebookStrategy = passportFacebook.Strategy;
 
 let fbAppId = "1570803726414021";
 let fbAppSecret = "940e3dc62968e9556146aaf3c66cd0b6";
-let fbCallBackUrl = "http://localhost:8017/auth/facebook/callback";
+let fbCallBackUrl = "https://localhost:8017/auth/facebook/callback";
 
 let initPassportFacebook = () => {
   passport.use(new facebookStrategy({
