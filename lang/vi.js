@@ -11,7 +11,9 @@ export const transErrors = {
   account_not_active: "Email da dc dang ki nhung chua kich hoat tai khoan, vui long kiem tra email cua ban hoac lien he voi bo phan ho tro",
   token_undefined: "Token khong ton tai",
   login_failed: "Sai tai khoan hoac mat khau",
-  server_error: "Co loi tren he thong, vui long lien he den bo phan ho tro. Xin cam on!!!"
+  server_error: "Co loi tren he thong, vui long lien he den bo phan ho tro. Xin cam on!!!",
+  avatar_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
+  avatar_size: "Anh upload toi da la 1MB",
 };
 
 export const tranSuccess = {
@@ -23,6 +25,7 @@ export const tranSuccess = {
     return `Xin chao ${username}, chuc ban mot ngay tot lanh`;
   },
   logoutSuccess: "Dang xuat tai khoan thanh cong",
+  avatar_updated: "Cap nhat anh dai dien thanh cong"
 };
 
 export const tranMail = {
