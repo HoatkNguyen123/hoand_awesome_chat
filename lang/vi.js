@@ -13,11 +13,13 @@ export const transErrors = {
   account_in_user: "Email nay da dc su dung",
   account_remove: "Tai khoan da bi xoa khoi he thong, vui long lien he voi bo phan ho tro",
   account_not_active: "Email da dc dang ki nhung chua kich hoat tai khoan, vui long kiem tra email cua ban hoac lien he voi bo phan ho tro",
+  account_undefined: "Tai khoan khong ton tai",
   token_undefined: "Token khong ton tai",
   login_failed: "Sai tai khoan hoac mat khau",
   server_error: "Co loi tren he thong, vui long lien he den bo phan ho tro. Xin cam on!!!",
   avatar_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
   avatar_size: "Anh upload toi da la 1MB",
+  user_current_password: "Mat khau hien tai khong chinh xac",
 };
 
 export const tranSuccess = {
@@ -30,6 +32,7 @@ export const tranSuccess = {
   },
   logoutSuccess: "Dang xuat tai khoan thanh cong",
   user_info_updated: "Cap nhat thong tin ca nhan thanh cong",
+  user_password_updated: "Cap nhat mat khau thanh cong",
 };
 
 export const tranMail = {
