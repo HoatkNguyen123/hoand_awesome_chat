@@ -1,6 +1,6 @@
 import express from "express";
 import { home, auth, user } from "../controllers/index";
-import { authValid } from "../validation/index";
+import { authValid, userValid } from "../validation/index";
 import initPassportLocal from "../controllers/passportController/local";
 import passport from "passport";
 import initPassportFacebook from "../controllers/passportController/facebook";
@@ -28,17 +28,17 @@ let initRoutes = (app) => {
     failureFlash: true
   }));
 
-  router.get("/auth/facebook", auth.checkLoggedOut, passport.authenticate("facebook", {scope: ["email"]}));
+  router.get("/auth/facebook", auth.checkLoggedOut, passport.authenticate("facebook", { scope: ["email"] }));
 
-  router.get("/auth/facebook/callback", auth.checkLoggedOut,  passport.authenticate("facebook", {
+  router.get("/auth/facebook/callback", auth.checkLoggedOut, passport.authenticate("facebook", {
     successRedirect: "/",
     failureRedirect: "/login-register",
   }));
 
 
-  router.get("/auth/google", auth.checkLoggedOut , passport.authenticate("google", {scope: ["email"]}));
+  router.get("/auth/google", auth.checkLoggedOut, passport.authenticate("google", { scope: ["email"] }));
 
-  router.get("/auth/google/callback", auth.checkLoggedOut , passport.authenticate("google", {
+  router.get("/auth/google/callback", auth.checkLoggedOut, passport.authenticate("google", {
     successRedirect: "/",
     failureRedirect: "/login-register",
   }));
@@ -47,6 +47,8 @@ let initRoutes = (app) => {
   router.get("/logout", auth.checkLoggedIn, auth.getLogout);
 
   router.put("/user/update-avatar", auth.checkLoggedIn, user.updateAvatar);
+
+  router.put("/user/update-info", auth.checkLoggedIn, userValid.updateInfo, user.updateInfo);
 
   return app.use("/", router);
 
