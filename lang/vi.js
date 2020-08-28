@@ -7,6 +7,7 @@ export const transValidation = {
   update_gender: "Du lieu gioi tinh co van de, ban la hacker sao",
   update_address: "Dia chi gioi han tu 3-30 ki tu",
   update_phone: "So dien thoai bat dau tu so 0 va gioi han tu 10-11 ki tu",
+  keyword_find_user: "Loi tu khoa tim kiem, chi cho phep ky tu chu cai va so, cho phep khoang trong"
 };
 
 export const transErrors = {
@@ -20,6 +21,7 @@ export const transErrors = {
   avatar_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
   avatar_size: "Anh upload toi da la 1MB",
   user_current_password: "Mat khau hien tai khong chinh xac",
+
 };
 
 export const tranSuccess = {
