@@ -13,14 +13,47 @@ let ContactSchema = new Schema({
 
 ContactSchema.statics = {
 
-findAllByUser(userId){
-  return this.find({
-    $or: [
-      {"userId": userId},
-      {"contactId": userId}
-    ]
-  }).exec();
-}
+  createNew(item) {
+    return this.create(item);
+  },
+
+  findAllByUser(userId) {
+    return this.find({
+      $or: [
+        { "userId": userId },
+        { "contactId": userId }
+      ]
+    }).exec();
+  },
+
+
+  checkExists(userId, contactId) {
+    return this.findOne({
+      $or: [
+        {
+          $and: [
+            { "userId": userId },
+            { "contactId": contactId }
+          ]
+        },
+        {
+          $and: [
+            { "userId": contactId },
+            { "contactId": userId }
+          ]
+        }
+      ]
+    }).exec();
+  },
+
+  removeRequestContact(userId, contactId) {
+    return this.remove({
+      $and: [
+        { "userId": userId },
+        { "contactId": contactId }
+      ]
+    }).exec();
+  }
 
 
 
