@@ -7,8 +7,21 @@ function addContact() {
         $("#find-user").find(`div.user-add-new-contact[data-uid = ${targetId}]`).hide();
         $("#find-user").find(`div.user-remove-request-contact[data-uid = ${targetId}]`).css("display", "inline-block");
         increaseNumberNotifyContact("count-request-contact-sent");
-        socket.emit("add-new-contact", {contactId: targetId});
+        socket.emit("add-new-contact", { contactId: targetId });
       }
     })
   })
 }
+
+
+socket.on("response-add-new-contact", function (user) {
+  let notif = ` <span data-uid="${user.id}">
+              <img class="avatar-small" src="images/users/${user.avatar}" alt=""> 
+              <strong>${user.username}</strong> đã gửi cho bạn một lời mời kết bạn!
+            </span><br><br><br>`
+
+  $(".noti_content").prepend(notif);
+  increaseNumberNotifyContact("count-request-contact-received");
+  increaseNumberNotifycation("noti_contact_counter");
+  increaseNumberNotifycation("noti_counter");
+});
