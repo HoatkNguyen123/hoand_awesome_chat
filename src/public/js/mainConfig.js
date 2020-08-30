@@ -50,11 +50,11 @@ function enableEmojioneArea(chatId) {
 }
 
 function spinLoaded() {
-  $('#loader').css('display', 'none');
+  $('.lds-ring').css('display', 'none');
 }
 
 function spinLoading() {
-  $('#loader').css('display', 'block');
+  $('.lds-ring').css('display', 'block');
 }
 
 function ajaxLoading() {
