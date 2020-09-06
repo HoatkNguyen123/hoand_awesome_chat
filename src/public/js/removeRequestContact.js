@@ -1,9 +1,9 @@
 
 function removeRequestContact() {
-  $(".user-remove-request-contact").bind("click", function () {
+  $(".user-remove-request-contact").unbind("click").on("click", function () {
     let targetId = $(this).data("uid");
     $.ajax({
-      url: "/contact/remove-request-contact",
+      url: "/contact/remove-request-contact-sent",
       type: "delete",
       data: { uid: targetId },
       success: function (data) {
@@ -33,3 +33,7 @@ socket.on("response-remove-request-contact", function (user) {
   decreaseNumberNotifycation("noti_counter", 1);
 
 });
+
+$(document).ready(function (){
+  removeRequestContact();
+})

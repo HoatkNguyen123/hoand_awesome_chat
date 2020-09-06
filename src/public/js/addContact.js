@@ -9,6 +9,7 @@ function addContact() {
         increaseNumberNotifyContact("count-request-contact-sent");
         let userInfoHtml = $("#find-user").find(`ul li[data-uid = ${targetId}]`).get(0).outerHTML;
         $("#request-contact-sent").find("ul").prepend(userInfoHtml);
+        removeRequestContact();
         socket.emit("add-new-contact", { contactId: targetId });
       }
     })
