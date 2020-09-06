@@ -39,6 +39,7 @@ $(document).ready(function () {
                   </div>
               </li>`);
       });
+      removeRequestContactReceived();
       $("#link-read-more-contacts-received").css("display", "inline-block");
       $(".lds-ripple-contacts").css("display", "none");
     });

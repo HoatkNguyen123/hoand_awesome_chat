@@ -60,6 +60,9 @@ let initRoutes = (app) => {
   router.delete("/contact/remove-request-contact-sent", auth.checkLoggedIn, contact.removeRequestContact);
 
 
+  router.delete("/contact/remove-request-contact-received", auth.checkLoggedIn, contact.removeRequestContactReceived);
+
+
   router.get("/notification/read-more", auth.checkLoggedIn, notification.readMore);
 
 

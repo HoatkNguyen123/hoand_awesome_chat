@@ -6,6 +6,7 @@ function addContact() {
       if (data.success) {
         $("#find-user").find(`div.user-add-new-contact[data-uid = ${targetId}]`).hide();
         $("#find-user").find(`div.user-remove-request-contact[data-uid = ${targetId}]`).css("display", "inline-block");
+        increaseNumberNotifycation("noti_contact_counter", 1);
         increaseNumberNotifyContact("count-request-contact-sent");
         let userInfoHtml = $("#find-user").find(`ul li[data-uid = ${targetId}]`).get(0).outerHTML;
         $("#request-contact-sent").find("ul").prepend(userInfoHtml);
@@ -52,4 +53,5 @@ socket.on("response-add-new-contact", function (user) {
                     </div>
                   </li>`;
   $("#request-contact-received").find("ul").prepend(userInfoHtml);
+  removeRequestContactReceived();
 });
