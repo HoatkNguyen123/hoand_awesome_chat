@@ -29,7 +29,7 @@ $(document).ready(function () {
                       <div class="user-address">
                           <span>&nbsp ${(user.address !== null) ? user.address : ""} </span>
                       </div>
-                      <div class="user-acccept-contact-received" data-uid="${user._id} ">
+                      <div class="user-approve-request-contact-received" data-uid="${user._id} ">
                           Chấp nhận
                       </div>
                       <div class="user-reject-request-contact-received action-danger"
@@ -40,6 +40,7 @@ $(document).ready(function () {
               </li>`);
       });
       removeRequestContactReceived();
+      approveRequestContactReceived();
       $("#link-read-more-contacts-received").css("display", "inline-block");
       $(".lds-ripple-contacts").css("display", "none");
     });
