@@ -1,4 +1,5 @@
 import { notification, contact, message } from "./../services/index";
+import {bufferToBase64} from "./../helpers/clientHelper";
 let getHome = async (req, res) => {
   let notifications = await notification.getNotifications(req.user._id);
   let countNotifUnread = await notification.countNotifUnread(req.user._id);
@@ -18,6 +19,7 @@ let getHome = async (req, res) => {
   let allConversations = getAllConversationItems.allConversations;
   let userConversations = getAllConversationItems.userConversations;
   let groupConversations = getAllConversationItems.groupConversations;
+  let allConversationWithMessages = getAllConversationItems.allConversationWithMessages;
 
   return res.render("main/home/home", {
     errors: req.flash("errors"),
@@ -34,6 +36,8 @@ let getHome = async (req, res) => {
     allConversations: allConversations,
     userConversations: userConversations,
     groupConversations: groupConversations,
+    allConversationWithMessages: allConversationWithMessages,
+    bufferToBase64: bufferToBase64
 
   });
 };
