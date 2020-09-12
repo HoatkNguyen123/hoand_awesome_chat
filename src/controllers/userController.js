@@ -40,7 +40,7 @@ let updateAvatar = (req, res) => {
         updatedAt: Date.now(),
       };
       let userUpdate = await user.updateUser(req.user._id, updateUserItem);
-      await fsExtra.remove(`${app.avatar_directory}/${userUpdate.avatar}`);
+      // await fsExtra.remove(`${app.avatar_directory}/${userUpdate.avatar}`);
       let result = {
         message: tranSuccess.user_info_updated,
         imageSrc: `/images/users/${req.file.filename}`

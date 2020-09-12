@@ -1,8 +1,10 @@
 import contactModel from "./../models/contactModel";
 import userModel from "./../models/userModel";
 import chatGroupModel from "./../models/chatGroupModel";
+import messageModel from "./../models/messageModel";
 import _ from "lodash";
 const LIMIT_CONVERSATIONS_TAKEN = 15;
+const LIMIT_MESSAGES_TAKEN = 30;
 let getAllConversationItems = (currentUserId) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -26,10 +28,22 @@ let getAllConversationItems = (currentUserId) => {
       allConversations = _.sortBy(allConversations, (item) => {
         return -item.updatedAt;
       })
+
+      let allConversationWithMessagesPromise = allConversations.map(async (conversation) => {
+        let getMessages = await messageModel.model.getMessages(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
+        conversation = conversation.toObject();
+        conversation.messages = getMessages;
+        return conversation;
+      });
+      let allConversationWithMessages = await Promise.all(allConversationWithMessagesPromise);
+      allConversationWithMessages = _.sortBy(allConversationWithMessages, (item) => {
+        return -item.updatedAt;
+      });
       resolve({
         userConversations: userConversations,
         groupConversations: groupConversations,
-        allConversations: allConversations
+        allConversations: allConversations,
+        allConversationWithMessages: allConversationWithMessages
       });
     } catch (error) {
       reject(error);
