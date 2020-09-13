@@ -8,16 +8,16 @@ function textAndEmojiChat(divId) {
       }
       let dataTextEmojiForSend = {
         uid: targetId,
-        messageval: messageVal
+        messageVal: messageVal
       };
       if ($(`#write-chat-${divId}`).hasClass("chat-in-group")) {
-        dataTextEmojiForSend.isChatInGroup = true;
+        dataTextEmojiForSend.isChatGroup = true;
       }
 
       $.post("/message/add-new-text-emoji", dataTextEmojiForSend, function (data) {
-
+        console.log(data.message);
       }).fail(function (response) {
-
+        alertify.notify(response.responseText, "error", 7);
       });
     }
   });
