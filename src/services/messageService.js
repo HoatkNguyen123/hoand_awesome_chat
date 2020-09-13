@@ -40,9 +40,9 @@ let getAllConversationItems = (currentUserId) => {
         return -item.updatedAt;
       });
       resolve({
-        userConversations: userConversations,
-        groupConversations: groupConversations,
-        allConversations: allConversations,
+        // userConversations: userConversations,
+        // groupConversations: groupConversations,
+        // allConversations: allConversations,
         allConversationWithMessages: allConversationWithMessages
       });
     } catch (error) {
