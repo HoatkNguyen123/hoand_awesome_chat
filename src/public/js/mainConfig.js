@@ -14,15 +14,15 @@ function nineScrollLeft() {
   });
 }
 
-function nineScrollRight() {
-  $('.right .chat').niceScroll({
+function nineScrollRight(Id) {
+  $(`.right .chat[data-chat = ${Id}]`).niceScroll({
     smoothscroll: true,
     horizrailenabled: false,
     cursorcolor: '#ECECEC',
     cursorwidth: '7px',
     scrollspeed: 50
   });
-  $('.right .chat').scrollTop($('.right .chat')[0].scrollHeight);
+  $(`.right .chat[data-chat = ${Id}]`).scrollTop($(`.right .chat[data-chat = ${Id}]`)[0].scrollHeight);
 }
 
 function enableEmojioneArea(chatId) {
@@ -85,25 +85,30 @@ function configNotification() {
 }
 
 function gridPhotos(layoutNumber) {
-  let countRows = Math.ceil($('#imagesModal').find('div.all-images>img').length / layoutNumber);
-  let layoutStr = new Array(countRows).fill(layoutNumber).join("");
-  $('#imagesModal').find('div.all-images').photosetGrid({
-    highresLinks: true,
-    rel: 'withhearts-gallery',
-    gutter: '2px',
-    layout: layoutStr,
-    onComplete: function () {
-      $('.all-images').css({
-        'visibility': 'visible'
-      });
-      $('.all-images a').colorbox({
-        photo: true,
-        scalePhotos: true,
-        maxHeight: '90%',
-        maxWidth: '90%'
-      });
-    }
+  $(".show-images").unbind('click').click(function () {
+    let href = $(this).attr('href');
+    let modalImageId = href.replace("#", "");
+    let countRows = Math.ceil($(`#${modalImageId}`).find('div.all-images>img').length / layoutNumber);
+    let layoutStr = new Array(countRows).fill(layoutNumber).join("");
+    $(`#${modalImageId}`).find('div.all-images').photosetGrid({
+      highresLinks: true,
+      rel: 'withhearts-gallery',
+      gutter: '2px',
+      layout: layoutStr,
+      onComplete: function () {
+        $(`#${modalImageId}`).find('.all-images').css({
+          'visibility': 'visible'
+        });
+        $(`#${modalImageId}`).find('.all-images').colorbox({
+          photo: true,
+          scalePhotos: true,
+          maxHeight: '90%',
+          maxWidth: '90%'
+        });
+      }
+    });
   });
+
 }
 
 // function showButtonGroupChat() {
@@ -165,11 +170,13 @@ function changeTypeChat() {
   })
 }
 
-function changeScreenChat(){
-  $(".room-chat").unbind("click").on("click", function() {
+function changeScreenChat() {
+  $(".room-chat").unbind("click").on("click", function () {
     $(".person").removeClass("active");
     $(this).find("li").addClass("active");
     $(this).tab("show");
+    let Id = $(this).find("li").data("chat");
+    nineScrollRight(Id);
   });
 }
 
@@ -182,7 +189,7 @@ $(document).ready(function () {
 
   // Cấu hình thanh cuộn
   nineScrollLeft();
-  nineScrollRight();
+  // nineScrollRight();
 
   // Bật emoji, tham số truyền vào là id của box nhập nội dung tin nhắn
   enableEmojioneArea("17071995");
