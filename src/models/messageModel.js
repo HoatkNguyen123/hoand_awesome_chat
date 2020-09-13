@@ -9,12 +9,12 @@ let MessageSchema = new Schema({
   messageType: String,
   sender: {
     id: String,
-    username: String,
+    name: String,
     avatar: String
   },
   receiver: {
     id: String,
-    username: String,
+    name: String,
     avatar: String
   },
   text: String,
@@ -25,7 +25,7 @@ let MessageSchema = new Schema({
 });
 
 MessageSchema.statics = {
-  getMessages(senderId, receiverId, limit) {
+  getMessagesInPersonal(senderId, receiverId, limit) {
     return this.find({
       $or: [
         {
@@ -42,7 +42,10 @@ MessageSchema.statics = {
         }
       ]
     }).sort({ "createdAt": 1 }).limit(limit).exec();
-  }
+  },
+  getMessagesInGroup(receiverId, limit) {
+    return this.find({ "receiverId": receiverId }).sort({ "createdAt": 1 }).limit(limit).exec();
+  },
 };
 
 const MESSAGE_CONVERSATION_TYPES = {
