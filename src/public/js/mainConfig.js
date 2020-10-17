@@ -175,10 +175,12 @@ function changeTypeChat() {
 
 function changeScreenChat() {
   $(".room-chat").unbind("click").on("click", function () {
-    $(".person").removeClass("active");
-    $(this).find("li").addClass("active");
-    $(this).tab("show");
     let Id = $(this).find("li").data("chat");
+
+    $(".person").removeClass("active");
+    $(`.person[data-chat=${Id}]`).addClass("active");
+    $(this).tab("show");
+    
     nineScrollRight(Id);
 
     // Bật emoji, tham số truyền vào là id của box nhập nội dung tin nhắn
@@ -187,6 +189,14 @@ function changeScreenChat() {
     imageChat(Id);
 
   });
+}
+
+function convertEmoji(){
+    $(".convert-emoji").each(function() {
+      var original = $(this).html();
+      var converted  = emojione.toImage(original);
+      $(this).html(converted);
+    });
 }
 
 $(document).ready(function () {
@@ -222,5 +232,9 @@ $(document).ready(function () {
 
   changeScreenChat();
 
+  convertEmoji();
+
   $("ul.people").find("a")[0].click();
+
+
 });
