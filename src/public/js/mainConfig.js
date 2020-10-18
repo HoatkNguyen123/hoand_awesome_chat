@@ -42,6 +42,11 @@ function enableEmojioneArea(chatId) {
       },
       click: function(){
         textAndEmojiChat(chatId);
+        typingOn(chatId);
+        
+      },
+      blur: function(){
+        typingOff(chatId);
       }
     },
   });
