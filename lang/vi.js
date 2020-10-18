@@ -24,7 +24,8 @@ export const transErrors = {
   user_current_password: "Mat khau hien tai khong chinh xac",
   conversation_notfound: "Cuộc trò chuyện không tồn tại",
   image_message_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
-  image_message_size: "Anh upload toi da la 1MB"
+  image_message_size: "Anh upload toi da la 1MB",
+  attachment_message_size: "Tep tin dinh kem upload toi da la 1MB"
 
 };
 

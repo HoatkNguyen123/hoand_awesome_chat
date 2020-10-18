@@ -188,18 +188,20 @@ function changeTypeChat() {
 
 function changeScreenChat() {
   $(".room-chat").unbind("click").on("click", function () {
-    let Id = $(this).find("li").data("chat");
+    let divId = $(this).find("li").data("chat");
 
     $(".person").removeClass("active");
-    $(`.person[data-chat=${Id}]`).addClass("active");
+    $(`.person[data-chat=${divId}]`).addClass("active");
     $(this).tab("show");
     
-    nineScrollRight(Id);
+    nineScrollRight(divId);
 
-    // Bật emoji, tham số truyền vào là id của box nhập nội dung tin nhắn
-    enableEmojioneArea(Id);
+    // Bật emoji, tham số truyền vào là divId của box nhập nội dung tin nhắn
+    enableEmojioneArea(divId);
 
-    imageChat(Id);
+    imageChat(divId);
+
+    attachmentChat(divId);
 
   });
 }
@@ -210,6 +212,11 @@ function convertEmoji(){
       var converted  = emojione.toImage(original);
       $(this).html(converted);
     });
+}
+
+function bufferToBase64(buffer) {
+
+  return btoa(new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), ""));
 }
 
 $(document).ready(function () {
