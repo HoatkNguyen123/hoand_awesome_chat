@@ -96,6 +96,9 @@ function gridPhotos(layoutNumber) {
   $(".show-images").unbind('click').click(function () {
     let href = $(this).attr('href');
     let modalImageId = href.replace("#", "");
+
+    let originDataImage = $(`#${modalImageId}`).find("div.modal-body").html();
+
     let countRows = Math.ceil($(`#${modalImageId}`).find('div.all-images>img').length / layoutNumber);
     let layoutStr = new Array(countRows).fill(layoutNumber).join("");
     $(`#${modalImageId}`).find('div.all-images').photosetGrid({
@@ -115,6 +118,11 @@ function gridPhotos(layoutNumber) {
         });
       }
     });
+
+    $(`#${modalImageId}`).on("hide.bs.modal", function() {
+      $(this).find("div.modal-body").html(originDataImage);
+    });
+
   });
 
 }
