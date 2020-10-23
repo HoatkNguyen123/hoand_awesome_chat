@@ -15,7 +15,7 @@ $(document).ready(function () {
       newContactsUsers.forEach(function (user) {
         $("#contacts")
           .find("ul")
-          .append(`<li class="_contactList" data-uid="${user._id} ">
+          .append(`<li class="_contactList" data-uid="${user._id}">
                 <div class="contactPanel">
                     <div class="user-avatar">
                         <img src="images/users/${user.avatar} " alt="">

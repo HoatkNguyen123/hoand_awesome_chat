@@ -54,7 +54,7 @@ socket.on("response-approve-request-contact-received", function (user) {
   $("#request-contact-sent").find(`ul li[data-uid="${user.id}"]`).remove();
   $("#find-user").find(`ul li[data-uid="${user.id}"]`).remove();
 
-  let userInfoHtml = `<li class="_contactList" data-uid="${user.id} ">
+  let userInfoHtml = `<li class="_contactList" data-uid="${user.id}">
                     <div class="contactPanel">
                         <div class="user-avatar">
                             <img src="images/users/${user.avatar} " alt="">

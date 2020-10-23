@@ -93,7 +93,7 @@ function configNotification() {
 }
 
 function gridPhotos(layoutNumber) {
-  $(".show-images").unbind('click').click(function () {
+  $(".show-images").unbind('click').on("click", function (){
     let href = $(this).attr('href');
     let modalImageId = href.replace("#", "");
 
@@ -110,7 +110,7 @@ function gridPhotos(layoutNumber) {
         $(`#${modalImageId}`).find('.all-images').css({
           'visibility': 'visible'
         });
-        $(`#${modalImageId}`).find('.all-images').colorbox({
+        $(`#${modalImageId}`).find('.all-images a').colorbox({
           photo: true,
           scalePhotos: true,
           maxHeight: '90%',
