@@ -6,12 +6,12 @@ function callFindUsers(element) {
 
     if(!keyword.length)
     {
-      alertify.notify("Can nhap day du thong tin vao o tim kiem", "error", 7);
+      alertify.notify("Cần nhập đầy đủ thông tin vào ô tìm kiếm", "error", 7);
       return false;
     }
     if(!rexgexKeyword.test(keyword))
     {
-      alertify.notify("Loi tu khoa tim kiem, chi cho phep nhap ki tu chu va so, cho phep nhap khoang trang", "error", 7);
+      alertify.notify("Lỗi từ khóa tìm kiếm, chỉ cho phép nhập kí tự chữ và số, cho phép nhập khoảng trắng", "error", 7);
       return false;
     }
 

@@ -5,12 +5,12 @@ function imageChat(divId) {
     let limit = 1048576; // 1MB
 
     if ($.inArray(fileData.type, math) === -1) {
-      alertify.notify("Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png", "error", 7);
+      alertify.notify("Kiểu file upload không hợp lệ, chỉ chấp nhận những file .jpg hoặc png", "error", 7);
       $(this).val(null);
       return false;
     }
     if (fileData.size > limit) {
-      alertify.notify("Anh upload toi da la 1MB", "error", 7);
+      alertify.notify("Ảnh upload tối đa là 1MB", "error", 7);
       $(this).val(null);
       return false;
     }

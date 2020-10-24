@@ -7,7 +7,7 @@ $(document).ready(function () {
     
     $.get(`/notification/read-more?skipNumber=${skipNumber}`, function (notifications) {
       if (!notifications.length) {
-        alertify.notify("Ban khong con thong bao nao de xem nua ca", "error", 7);
+        alertify.notify("Bạn không còn thông báo nào để xem nữa cả", "error", 7);
         $("#link-read-more-notif").css("display", "inline-block");
         $(".lds-ripple").css("display", "none");
         return false;

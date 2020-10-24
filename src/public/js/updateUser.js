@@ -9,8 +9,8 @@ function callLogout() {
   let timerInterval;
   Swal.fire({
     position: 'top-end',
-    title: 'Tu dong dang xuat sau 5s',
-    html: "Thoi gian: <strong> </strong>",
+    title: 'Tự động đăng xuất sau 5 giây',
+    html: "Thời gian: <strong> </strong>",
     timer: 5000,
     onBeforeOpen: () => {
       Swal.showLoading();
@@ -36,7 +36,7 @@ function updateUserInfo() {
 
     if ($.inArray(fileData.type, math) === -1) {
       alertify.notify(
-        "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
+        "Kiểu file upload không hợp lệ, chỉ chấp nhận những file .jpg hoặc png",
         "error",
         7
       );
@@ -44,7 +44,7 @@ function updateUserInfo() {
       return false;
     }
     if (fileData.size > limit) {
-      alertify.notify("Anh upload toi da la 1MB", "error", 7);
+      alertify.notify("Ảnh upload tối đa là 1MB", "error", 7);
       $(this).val(null);
       return false;
     }
@@ -69,7 +69,7 @@ function updateUserInfo() {
       userAvatar = formData;
     } else {
       alertify.notify(
-        "Trinh duyet cua ban khong ho tro FileReader",
+        "Trình duyệt của bạn không hỗ trợ FileReader",
         "error",
         7
       );
@@ -84,7 +84,7 @@ function updateUserInfo() {
 
 
     if (!regexUsername.test(username) || username.length < 3 || username.length > 17) {
-      alertify.notify("Ten nguoi dung gioi han tu 3-17 ki tu, khong duoc chua ki tu dac biet", "error", 7);
+      alertify.notify("Tên người dùng giới hạn từ 3-17 kí tự, không được chứa kí tự đặc biệt", "error", 7);
       $(this).val(originUserInfo.username);
       delete userInfo.username;
       return false;
@@ -96,7 +96,7 @@ function updateUserInfo() {
 
     let gender = $(this).val();
     if (gender !== "male") {
-      alertify.notify("Du lieu gioi tinh co van de, ban la hacker sao", "error", 7);
+      alertify.notify("Dữ liệu giới tính có vấn đề, bạn là hacker chăng???", "error", 7);
       $(this).val(originUserInfo.gender);
       delete userInfo.gender;
       return false;
@@ -108,7 +108,7 @@ function updateUserInfo() {
 
     let gender = $(this).val();
     if (gender !== "female") {
-      alertify.notify("Du lieu gioi tinh co van de, ban la hacker sao", "error", 7);
+      alertify.notify("Dữ liệu giới tính có vấn đề, bạn là hacker chăng???", "error", 7);
       $(this).val(originUserInfo.gender);
       delete userInfo.gender;
       return false;
@@ -121,7 +121,7 @@ function updateUserInfo() {
     let address = $(this).val();
 
     if (address.length < 3 || address.length > 30) {
-      alertify.notify("Dia chi gioi han tu 3-30 ki tu", "error", 7);
+      alertify.notify("Địa chỉ giới hạn từ 3-30 kí tự", "error", 7);
       $(this).val(originUserInfo.address);
       delete userInfo.address;
       return false;
@@ -134,7 +134,7 @@ function updateUserInfo() {
     let phone = $(this).val();
     let regexPhone = new RegExp(/^(0)[0-9]{9,10}$/);
     if (!regexPhone.test(phone)) {
-      alertify.notify("So dien thoai bat dau tu so 0 va gioi han tu 10-11 ki tu", "error", 7);
+      alertify.notify("Số điện thoại bắt đầu từ số 0 và giới hạn từ 10-11 kí tự", "error", 7);
       $(this).val(originUserInfo.phone);
       delete userInfo.phone;
       return false;
@@ -148,7 +148,7 @@ function updateUserInfo() {
     let currentPassword = $(this).val();
     let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/);
     if (!regexPassword.test(currentPassword)) {
-      alertify.notify("Mat khau phai chua it nhat 8 ki tu, bao gom chu hoa chu thuong chu so va ki tu dac biet", "error", 7);
+      alertify.notify("Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm chữ hoa chữ thường chữ số và kí tự đặc biệt", "error", 7);
       $(this).val(null);
       delete userUpdatePassword.currentPassword;
       return false;
@@ -162,7 +162,7 @@ function updateUserInfo() {
     let newPassword = $(this).val();
     let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/);
     if (!regexPassword.test(newPassword)) {
-      alertify.notify("Mat khau phai chua it nhat 8 ki tu, bao gom chu hoa chu thuong chu so va ki tu dac biet", "error", 7);
+      alertify.notify("Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm chữ hoa chữ thường chữ số và kí tự đặc biệt", "error", 7);
       $(this).val(null);
       delete userUpdatePassword.newPassword;
       return false;
@@ -175,13 +175,13 @@ function updateUserInfo() {
 
     let confirmNewPassword = $(this).val();
     if (!userUpdatePassword.newPassword) {
-      alertify.notify("Can nhap mat khau moi truoc khi nhap mat khau xac nhan", "error", 7);
+      alertify.notify("Cần nhập mật khẩu mới trước khi nhập mật khẩu xác nhận", "error", 7);
       $(this).val(null);
       delete userUpdatePassword.confirmNewPassword;
       return false;
     }
     if (confirmNewPassword !== userUpdatePassword.newPassword) {
-      alertify.notify("Mat khau xac nhan khong khop voi mat khau moi", "error", 7);
+      alertify.notify("Mật khẩu xác nhận không trùng khớp với mật khẩu mới", "error", 7);
       $(this).val(null);
       delete userUpdatePassword.confirmNewPassword;
       return false;
@@ -309,18 +309,18 @@ $(document).ready(function () {
 
   $("#input-btn-update-user-password").bind("click", function () {
     if (!userUpdatePassword.currentPassword || !userUpdatePassword.newPassword || !userUpdatePassword.confirmNewPassword) {
-      alertify.notify("Can nhap day du thong tin vao cac truong du lieu", "error", 7);
+      alertify.notify("Cần nhập đầy đủ thông tin vào các trường dữ liệu", "error", 7);
       return false;
     }
     Swal.fire({
-      title: 'Chac chan thay doi mat khau chu?',
-      text: "Khong the hoan tac lai qua trinh thay doi mat khau nhe",
+      title: 'Bạn có chắc chắn thay đổi mật khẩu?',
+      text: "Quá trình này không thể hoàn tác",
       icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#2ECC71',
       cancelButtonColor: '#ff7675',
-      confirmButtonText: 'Xac nhan',
-      cancelmButtonText: 'Huy'
+      confirmButtonText: 'Xác nhận',
+      cancelmButtonText: 'Hủy'
     }).then((result) => {
       if (!result.value) {
         $("#input-btn-cancel-update-user-password").click();
