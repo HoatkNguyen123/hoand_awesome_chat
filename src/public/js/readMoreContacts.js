@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $.get(`/contact/read-more-contacts?skipNumber=${skipNumber}`, function (newContactsUsers) {
       if (!newContactsUsers.length) {
-        alertify.notify("Ban khong con ban be nao de xem nua ca", "error", 7);
+        alertify.notify("Bạn không còn bạn bè nào để xem nữa cả", "error", 7);
         $("#link-read-more-contacts").css("display", "inline-block");
         $(".lds-ripple-contacts").css("display", "none");
         return false;

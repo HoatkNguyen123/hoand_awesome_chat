@@ -1,56 +1,56 @@
 export const transValidation = {
-  email_incorrect: "Email phai co dinh dang abc@gmail.com",
-  gender_incorrect: "Sai gioi tinh roi kia",
-  password_incorrect: "Mat khau phai chua it nhat 8 ki tu, bao gom chu hoa chu thuong chu so va ki tu dac biet",
-  password_confirmation_incorrect: "Mat khau xac nhan khong khop voi mat khau da nhap",
-  update_username: "Ten nguoi dung gioi han tu 3-17 ki tu, khong duoc chua ki tu dac biet",
-  update_gender: "Du lieu gioi tinh co van de, ban la hacker sao",
-  update_address: "Dia chi gioi han tu 3-30 ki tu",
-  update_phone: "So dien thoai bat dau tu so 0 va gioi han tu 10-11 ki tu",
-  keyword_find_user: "Loi tu khoa tim kiem, chi cho phep ky tu chu cai va so, cho phep khoang trong",
+  email_incorrect: "Email phải có định dạng abc@gmail.com",
+  gender_incorrect: "Giới tính có vấn đề, bạn là hacker chăng?",
+  password_incorrect: "Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm chữ hoa chữ thường chữ số và kí tự đặc biệt",
+  password_confirmation_incorrect: "Mật khẩu xác nhận không trùng khớp với mật khẩu mới",
+  update_username: "Tên người dùng giới hạn từ 3-17 kí tự, không được chứa kí tự đặc biệt",
+  update_gender: "Giới tính có vấn đề, bạn là hacker chăng?",
+  update_address: "Địa chỉ giới hạn từ 3-30 kí tự",
+  update_phone: "Số điện thoại bắt đầu từ số 0 và giới hạn từ 10-11 kí tự",
+  keyword_find_user: "Lỗi từ khóa tìm kiếm, chỉ cho phép kí tự chữ cái và chữ số, cho phép khoảng trắng",
   message_text_emoji_incorrect: "Tin nhắn không hợp lệ. Tối thiểu là 1 kí tự, tối đa là 400 kí tự"
 };
 
 export const transErrors = {
-  account_in_user: "Email nay da dc su dung",
-  account_remove: "Tai khoan da bi xoa khoi he thong, vui long lien he voi bo phan ho tro",
-  account_not_active: "Email da dc dang ki nhung chua kich hoat tai khoan, vui long kiem tra email cua ban hoac lien he voi bo phan ho tro",
-  account_undefined: "Tai khoan khong ton tai",
-  token_undefined: "Token khong ton tai",
-  login_failed: "Sai tai khoan hoac mat khau",
-  server_error: "Co loi tren he thong, vui long lien he den bo phan ho tro. Xin cam on!!!",
-  avatar_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
-  avatar_size: "Anh upload toi da la 1MB",
-  user_current_password: "Mat khau hien tai khong chinh xac",
+  account_in_user: "Email này đã được sử dụng",
+  account_remove: "Tài khoản đã bị xóa khỏi hệ thống, vui lòng liên hệ với bộ phận hỗ trợ",
+  account_not_active: "Email đã được đăng kí nhưng chưa kích hoạt tài khoản, vui lòng kiểm tra email của bạn hoặc liên hệ với bộ phận hỗ trợ",
+  account_undefined: "Tài khoản không tồn tại",
+  token_undefined: "Token không tồn tại",
+  login_failed: "Sai tài khoản hoặc mật khẩu",
+  server_error: "Có lỗi trên hệ thống, vui lòng liên hệ bộ phận hỗ trợ. Xin cảm ơn",
+  avatar_type: "Kiểu file upload không hợp lệ, chỉ chấp nhận những file .jpg hoặc png",
+  avatar_size: "Ảnh upload tối đa là 1MB",
+  user_current_password: "Mật khẩu hiện tại không chính xác",
   conversation_notfound: "Cuộc trò chuyện không tồn tại",
-  image_message_type: "Kieu file upload khong hop le, chi chap nhan nhung file .jpg hoac png",
-  image_message_size: "Anh upload toi da la 1MB",
-  attachment_message_size: "Tep tin dinh kem upload toi da la 1MB"
+  image_message_type: "Kiểu file upload không hợp lệ, chỉ chấp nhận những file .jpg hoặc png",
+  image_message_size: "Ảnh upload tối đa là 1MB",
+  attachment_message_size: "Tệp đính kèm upload tối đa là 1MB"
 
 };
 
 export const tranSuccess = {
   userCreated: (userEmail) => {
-    return `Tai khoan <strong>${userEmail}</strong> da duoc tao, vui long kiem tra email cua ban de kich hoat tai khoan`;
+    return `Tài khoản <strong>${userEmail}</strong> đã được tạo, vui lòng kiểm tra email của bạn để kích hoạt tài khoản`;
   },
-  account_active: "Kich hoat tai khoan thanh cong, ban co the dang nhap vao ung dung",
+  account_active: "Kích hoạt tài khoản thành công, bạn có thể đăng nhập vào ứng dụng",
   loginSuccess: (username) =>{
-    return `Xin chao ${username}, chuc ban mot ngay tot lanh`;
+    return `Xin chào ${username}, chúc bạn một ngày vui vẻ và tốt lành`;
   },
-  logoutSuccess: "Dang xuat tai khoan thanh cong",
-  user_info_updated: "Cap nhat thong tin ca nhan thanh cong",
-  user_password_updated: "Cap nhat mat khau thanh cong",
+  logoutSuccess: "Đăng xuất tài khoản thành công",
+  user_info_updated: "Cập nhật thông tin cá nhân thành công",
+  user_password_updated: "Cập nhật mật khẩu thành công",
 };
 
 export const tranMail = {
-  subject: 'Awesome chat: Xac nhan kich hoat tai khoan!!!',
+  subject: 'Awesome chat: Xác nhận kích hoạt tài khoản',
   template: (linkVerify) => {
     return `
-    <h2> Ban da nhan duoc email nay vi da dang ky tai khoan tren ung dung Awesome chat </h2>
-    <h3> Vui long click vao lien ket ben duoi de kich hoat tai khoan truoc khi dang nhap </h3>
+    <h2> Bạn nhận được email này vì đã đăng kí tài khoản trên ứng dụng Awesome chat </h2>
+    <h3> Vui lòng nhấp vào liên kết bên dưới để kích hoạt tài khoản và đăng nhập </h3>
     <h3> <a href="${linkVerify}" target="_blank"> ${linkVerify} </a></h3>
-    <h4> Neu email nay la nham lan, hay bo qua no</h4>
+    <h4> Nếu email này là nhầm lẫn, xin hãy bỏ qua nó, xin cảm ơn</h4>
     `;
   },
-  send_failed: 'Co loi trong qua trinh gui email, vui long lien he lai voi bo phan ho tro',
+  send_failed: 'Có lỗi trong quá trình gửi email, vui lòng liên hệ bộ phận hỗ trợ, xin cảm ơn',
 };

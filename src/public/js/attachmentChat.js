@@ -6,7 +6,7 @@ function attachmentChat(divId) {
     let limit = 1048576; // 1MB
 
     if (fileData.size > limit) {
-      alertify.notify("Tep dinh kem upload toi da la 1MB", "error", 7);
+      alertify.notify("Tệp đính kèm upload tối đa là 1MB", "error", 7);
       $(this).val(null);
       return false;
     }

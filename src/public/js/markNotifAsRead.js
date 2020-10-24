@@ -27,7 +27,7 @@ $(document).ready(function () {
       targetUsers.push($(notification).data("uid"));
     });
     if (!targetUsers.length) {
-      alertify.notify("Khong con thong bao chua doc", "error", 7)
+      alertify.notify("Không còn thông báo chưa đọc", "error", 7)
       return false;
     }
     markNotificationsAsRead(targetUsers);
@@ -39,7 +39,7 @@ $(document).ready(function () {
       targetUsers.push($(notification).data("uid"));
     });
     if (!targetUsers.length) {
-      alertify.notify("Khong con thong bao chua doc", "error", 7)
+      alertify.notify("Không còn thông báo chưa đọc", "error", 7)
       return false;
     }
     markNotificationsAsRead(targetUsers);
