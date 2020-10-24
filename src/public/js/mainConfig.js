@@ -203,6 +203,8 @@ function changeScreenChat() {
 
     attachmentChat(divId);
 
+    videoChat(divId);
+
   });
 }
 
@@ -256,5 +258,7 @@ $(document).ready(function () {
 
   $("ul.people").find("a")[0].click();
 
-
+  $("#video-chat-group").bind("click", function () {
+    alertify.notify("Không khả dụng tính năng này với nhóm trò chuyện. Vui lòng thử lại với cuộc trò chuyện cá nhân","error", 7);
+  })
 });
