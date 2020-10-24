@@ -1,5 +1,34 @@
 import { notification, contact, message } from "./../services/index";
-import {bufferToBase64, lastItemOfArray, convertTimestampToHumanTime} from "./../helpers/clientHelper";
+import { bufferToBase64, lastItemOfArray, convertTimestampToHumanTime } from "./../helpers/clientHelper";
+import request from "request";
+
+let getICETurnServer = () => {
+  return new Promise(async (resolve, reject) => {
+    let o = {
+      format: "urls"
+    };
+    let bodyString = JSON.stringify(o);
+    let options = {
+      url: "https://global.xirsys.net/_turn/awesome-chat",
+      method: "PUT",
+      headers: {
+        "Authorization": "Basic" + Buffer.from("HoaND:8cb1f4fc-1622-11eb-b375-0242ac150002").toString("base64"),
+        "Content-Type": "application/json",
+        "Content-Length": bodyString.length
+      }
+    };
+
+    request(options, (error, response, body) => {
+      if (error) {
+        return reject(error);
+      }
+      let bodyJson = JSON.parse(body);
+      resolve(bodyJson.v.iceServers);
+    });
+  });
+};
+
+
 let getHome = async (req, res) => {
   let notifications = await notification.getNotifications(req.user._id);
   let countNotifUnread = await notification.countNotifUnread(req.user._id);
@@ -16,11 +45,10 @@ let getHome = async (req, res) => {
   let countAllcontactsReceived = await contact.countAllcontactsReceived(req.user._id);
 
   let getAllConversationItems = await message.getAllConversationItems(req.user._id);
-  // let allConversations = getAllConversationItems.allConversations;
-  // let userConversations = getAllConversationItems.userConversations;
-  // let groupConversations = getAllConversationItems.groupConversations;
   let allConversationWithMessages = getAllConversationItems.allConversationWithMessages;
-  
+
+  let iceTurnServer = await getICETurnServer();
+
   return res.render("main/home/home", {
     errors: req.flash("errors"),
     success: req.flash("success"),
@@ -33,13 +61,11 @@ let getHome = async (req, res) => {
     countAllcontacts: countAllcontacts,
     countAllcontactsSent: countAllcontactsSent,
     countAllcontactsReceived: countAllcontactsReceived,
-    // allConversations: allConversations,
-    // userConversations: userConversations,
-    // groupConversations: groupConversations,
     allConversationWithMessages: allConversationWithMessages,
     bufferToBase64: bufferToBase64,
     lastItemOfArray: lastItemOfArray,
-    convertTimestampToHumanTime: convertTimestampToHumanTime
+    convertTimestampToHumanTime: convertTimestampToHumanTime,
+    iceTurnServer: JSON.stringify(iceTurnServer)
 
   });
 };
