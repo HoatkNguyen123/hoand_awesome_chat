@@ -32,6 +32,9 @@ $(document).ready(function () {
     alertify.notify("Người dùng này hiện không trực tuyến");
   });
   //Step 03
+
+  let iceServerList = $("#ice-server-list").val();
+
   let getPeerId = "";
 
   const peer = new Peer({
@@ -39,7 +42,8 @@ $(document).ready(function () {
     host: "peerjs-server-trungquandev.herokuapp.com",
     secure: true,
     port: 443,
-    debug: 3
+    config: {"iceServerList" : JSON.parse(iceServerList)}
+    // debug: 3
   });
 
   peer.on("open", function (peerId) {
