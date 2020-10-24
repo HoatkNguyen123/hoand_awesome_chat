@@ -20,7 +20,7 @@ $(document).ready(function () {
   socket.on("response-user-is-typing", function (response) {
 
     let messageTyping = `<div class="bubble you bubble-typing-gif">
-    <img src="/images/chat/typing.gif" /> </div`;
+    <img src="/images/chat/typing3.gif" /> </div`;
     if (response.currentGroupId) {
       if (response.currentUserId !== $("#dropdown-navbar-user").data("uid")) {
         let checkTyping = $(`.chat[data-chat=${response.currentGroupId}]`).find("div.bubble-typing-gif");
