@@ -103,6 +103,7 @@ function callCreateGroupChat() {
         if (subGroupChatName.length > 15){
 
           subGroupChatName = subGroupChatName.substr(0, 14);
+          subGroupChatName = `${subGroupChatName}<span>...</span>`;
         }
         let leftSideData = `
             <a href="#uid_${data.groupChat._id}" class="room-chat" data-target="#to_${data.groupChat._id}">
@@ -112,14 +113,11 @@ function callCreateGroupChat() {
                 </div>
                 <span class="name">
                     <span class="group-chat-name">
-                       ${subGroupChatName}<span>...</span>
+                       ${subGroupChatName}
                     </span>
                 </span>
-                <span class="time">                
-                </span>
-                <span class="preview convert-emoji">
-                </span>
-                </span>
+                <span class="time"></span>
+                <span class="preview convert-emoji"></span>
             </li>
         </a>
         `;
@@ -271,6 +269,7 @@ $(document).ready(function () {
     let subGroupChatName = data.groupChat.name;
     if ((subGroupChatName.length) > 15) {
       subGroupChatName = subGroupChatName.substr(0, 14);
+      subGroupChatName = `${subGroupChatName}<span>...</span>`;
     }
     let leftSideData = `
         <a href="#uid_${data.groupChat._id}" class="room-chat" data-target="#to_${data.groupChat._id}">
@@ -280,13 +279,12 @@ $(document).ready(function () {
             </div>
             <span class="name">
                 <span class="group-chat-name">
-                   ${subGroupChatName}<span>...</span>
+                   ${subGroupChatName}
                 </span>
             </span>
             <span class="time">                
             </span>
             <span class="preview convert-emoji">
-            </span>
             </span>
         </li>
     </a>
@@ -411,7 +409,7 @@ $(document).ready(function () {
     // Nothing to code
 
     //Step 09
-    socket.emit("member-received-group-chat", { groupChatId: data.groupChat._id })
+    socket.emit("member-received-group-chat", { groupChatId: data.groupChat._id });
 
     //Step 10
     socket.emit("check-status");
