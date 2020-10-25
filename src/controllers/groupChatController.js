@@ -17,7 +17,7 @@ let addNewGroup = async (req, res) => {
     let arrayMemberIds = req.body.arrayIds;
     let groupChatName = req.body.groupChatName;
 
-    let newGroupChat = groupChat.addNewGroup(currentUserId, arrayMemberIds, groupChatName);
+    let newGroupChat = await groupChat.addNewGroup(currentUserId, arrayMemberIds, groupChatName);
     return res.status(200).send({groupChat: newGroupChat});
   } catch (error) {
     return res.status(500).send(error);

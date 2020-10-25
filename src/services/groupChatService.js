@@ -13,7 +13,7 @@ let addNewGroup = (currentUserId, arrayMemberIds, groupChatName) => {
         userId: `${currentUserId}`,
         members: arrayMemberIds,
       };
-      let newGroup = chatGroupModel.createNew(newGroupItem);
+      let newGroup = await chatGroupModel.createNew(newGroupItem);
 
       resolve(newGroup);
     } catch (error) {
