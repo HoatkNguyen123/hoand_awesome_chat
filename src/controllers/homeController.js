@@ -5,28 +5,29 @@ import request from "request";
 let getICETurnServer = () => {
   return new Promise(async (resolve, reject) => {
 
-    let o = {
-      format: "urls"
-    };
+    // let o = {
+    //   format: "urls"
+    // };
 
-    let bodyString = JSON.stringify(o);
-    let options = {
-      url: "https://global.xirsys.net/_turn/awesome-chat",
-      method: "PUT",
-      headers: {
-        "Authorization": "Basic " + Buffer.from("HoaND:8cb1f4fc-1622-11eb-b375-0242ac150002").toString("base64"),
-        "Content-Type": "application/json",
-        "Content-Length": bodyString.length
-      }
-    };
+    // let bodyString = JSON.stringify(o);
+    // let options = {
+    //   url: "https://global.xirsys.net/_turn/awesome-chat",
+    //   method: "PUT",
+    //   headers: {
+    //     "Authorization": "Basic " + Buffer.from("HoaND:8cb1f4fc-1622-11eb-b375-0242ac150002").toString("base64"),
+    //     "Content-Type": "application/json",
+    //     "Content-Length": bodyString.length
+    //   }
+    // };
 
-    request(options, (error, response, body) => {
-      if (error) {
-        return reject(error);
-      }
-      let bodyJson = JSON.parse(body);
-      resolve(bodyJson.v.iceServers);
-    });
+    // request(options, (error, response, body) => {
+    //   if (error) {
+    //     return reject(error);
+    //   }
+    //   let bodyJson = JSON.parse(body);
+    //   resolve(bodyJson.v.iceServers);
+    // });
+    resolve([]);
 
   });
 };
