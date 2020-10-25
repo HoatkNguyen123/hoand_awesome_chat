@@ -8,7 +8,9 @@ export const transValidation = {
   update_address: "Địa chỉ giới hạn từ 3-30 kí tự",
   update_phone: "Số điện thoại bắt đầu từ số 0 và giới hạn từ 10-11 kí tự",
   keyword_find_user: "Lỗi từ khóa tìm kiếm, chỉ cho phép kí tự chữ cái và chữ số, cho phép khoảng trắng",
-  message_text_emoji_incorrect: "Tin nhắn không hợp lệ. Tối thiểu là 1 kí tự, tối đa là 400 kí tự"
+  message_text_emoji_incorrect: "Tin nhắn không hợp lệ. Tối thiểu là 1 kí tự, tối đa là 400 kí tự",
+  add_new_group_user_incorrect: "Vui lòng chọn bạn bè để thêm vào nhóm, tối thiểu là 2 người",
+  add_new_group_name_incorrect: "Vui lòng nhập tên cuộc trò chuyện giới hạn từ 5 đến 30 kí tự và không chứa kí tự đặc biệt"
 };
 
 export const transErrors = {
