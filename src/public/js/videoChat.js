@@ -31,7 +31,6 @@ $(document).ready(function () {
   socket.on("server-send-listener-is-offline", function () {
     alertify.notify("Người dùng này hiện không trực tuyến");
   });
-  //Step 03
 
   let iceServerList = $("#ice-server-list").val();
 
@@ -42,7 +41,7 @@ $(document).ready(function () {
     host: "peerjs-server-trungquandev.herokuapp.com",
     secure: true,
     port: 443,
-    config: {"iceServerList" : JSON.parse(iceServerList)}
+    config: {"iceServers" : JSON.parse(iceServerList)}
     // debug: 3
   });
 
@@ -50,6 +49,7 @@ $(document).ready(function () {
     getPeerId = peerId;
   });
 
+  //Step 03
   socket.on("server-request-peer-id-of-listener", function (response) {
 
     let listenerName = $("#navbar-username").text();
