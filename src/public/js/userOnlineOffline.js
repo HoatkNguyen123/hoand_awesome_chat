@@ -1,3 +1,5 @@
+//Step 00
+socket.emit("check-status");
 
 //Step 01
 
