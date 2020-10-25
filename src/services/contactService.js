@@ -2,7 +2,9 @@ import contactModel from "../models/contactModel";
 import userModel from "../models/userModel";
 import notificationModel from "../models/notificationsModel";
 import _ from "lodash";
+import { contact } from ".";
 const LIMIT_NOTIF = 10;
+
 let findUsersContact = (currentUserId, keyword) => {
   return new Promise(async (resolve, reject) => {
     let deprecatedUserIds = [currentUserId];
@@ -17,7 +19,7 @@ let findUsersContact = (currentUserId, keyword) => {
     resolve(users);
 
   });
-}
+};
 let addNew = (currentUserId, contactId) => {
   return new Promise(async (resolve, reject) => {
     let contactExists = await contactModel.checkExists(currentUserId, contactId);
@@ -41,7 +43,7 @@ let addNew = (currentUserId, contactId) => {
 
     resolve(newContact);
   });
-}
+};
 
 let removeContact = async (currentUserId, contactId) => {
   return new Promise(async (resolve, reject) => {
@@ -63,7 +65,7 @@ let removeRequestContact = (currentUserId, contactId) => {
     await notificationModel.model.removeRequestContactNotification(currentUserId, contactId, notificationModel.types.ADD_CONTACT);
     resolve(true);
   });
-}
+};
 
 let removeRequestContactReceived = (currentUserId, contactId) => {
   return new Promise(async (resolve, reject) => {
@@ -75,7 +77,7 @@ let removeRequestContactReceived = (currentUserId, contactId) => {
     // await notificationModel.model.removeRequestContactReceivedNotification(currentUserId, contactId, notificationModel.types.ADD_CONTACT);
     resolve(true);
   });
-}
+};
 
 let approveRequestContactReceived = (currentUserId, contactId) => {
   return new Promise(async (resolve, reject) => {
@@ -93,7 +95,7 @@ let approveRequestContactReceived = (currentUserId, contactId) => {
     await notificationModel.model.createNew(notificationItem);
     resolve(true);
   });
-}
+};
 
 
 let getContacts = (currentUserId) => {
@@ -114,7 +116,7 @@ let getContacts = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 
 let getContactsSent = (currentUserId) => {
@@ -129,7 +131,7 @@ let getContactsSent = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 
 let getContactsReceived = (currentUserId) => {
@@ -144,7 +146,7 @@ let getContactsReceived = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 
 let countAllcontacts = (currentUserId) => {
@@ -156,7 +158,7 @@ let countAllcontacts = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 let countAllcontactsSent = (currentUserId) => {
   return new Promise(async (resolve, reject) => {
@@ -167,7 +169,7 @@ let countAllcontactsSent = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 
 let countAllcontactsReceived = (currentUserId) => {
@@ -179,7 +181,7 @@ let countAllcontactsReceived = (currentUserId) => {
       reject(error);
     }
   });
-}
+};
 
 let readMoreContacts = (currentUserId, skipNumberContacts) => {
   return new Promise(async (resolve, reject) => {
@@ -200,7 +202,7 @@ let readMoreContacts = (currentUserId, skipNumberContacts) => {
       reject(error);
     }
   });
-}
+};
 
 let readMoreContactsSent = (currentUserId, skipNumberContacts) => {
   return new Promise(async (resolve, reject) => {
@@ -215,7 +217,7 @@ let readMoreContactsSent = (currentUserId, skipNumberContacts) => {
       reject(error);
     }
   });
-}
+};
 
 let readMoreContactsReceived = (currentUserId, skipNumberContacts) => {
   return new Promise(async (resolve, reject) => {
@@ -230,7 +232,30 @@ let readMoreContactsReceived = (currentUserId, skipNumberContacts) => {
       reject(error);
     }
   });
-}
+};
+
+let searchFriends = (currentUserId, keyword) => {
+  return new Promise(async (resolve, reject) => {
+
+    let friendIds = [];
+
+    let friends = await contactModel.getFriends(currentUserId);
+
+    friends.forEach((item) => {
+      friendIds.push(item.userId);
+      friendIds.push(item.contactId);
+    });
+    friendIds = _.uniqBy(friendIds);
+
+    friendIds = friendIds.filter(userId => userId != currentUserId);
+
+    let users = await userModel.findAllToAddGroupChat(friendIds, keyword);
+
+    resolve(users);
+
+  });
+};
+
 
 
 module.exports = {
@@ -248,5 +273,6 @@ module.exports = {
   readMoreContactsReceived: readMoreContactsReceived,
   removeRequestContactReceived: removeRequestContactReceived,
   approveRequestContactReceived: approveRequestContactReceived,
-  removeContact: removeContact
+  removeContact: removeContact,
+  searchFriends: searchFriends
 }

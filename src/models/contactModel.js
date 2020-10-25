@@ -202,7 +202,16 @@ ContactSchema.statics = {
         }
       ]
     }, { "updatedAt": Date.now() }).exec();
-  }
+  },
+
+  getFriends(userId) {
+    return this.find({
+      $and: [
+        { $or: [{ "userId": userId }, { "contactId": userId }] },
+        { "status": true }
+      ]
+    }).sort({ "createdAt": -1 }).exec();
+  },
 
 };
 
