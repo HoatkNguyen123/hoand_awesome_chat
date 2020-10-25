@@ -12,9 +12,9 @@ let chatImage = (io) => {
       clients = pushSocketIdToArray(clients, data.groupChat._id, socket.id);
     });
 
-    socket.on("member-received-group-chat", data => {
+    socket.on("member-received-group-chat", (data) => {
       clients = pushSocketIdToArray(clients, data.groupChatId, socket.id);
-    })
+    });
     
     socket.on("chat-image", (data) => {
       if (data.groupId) {

@@ -12,9 +12,9 @@ let userOnlineOffline = (io) => {
       clients = pushSocketIdToArray(clients, data.groupChat._id, socket.id);
     });
 
-    socket.on("member-received-group-chat", data => {
+    socket.on("member-received-group-chat", (data) => {
       clients = pushSocketIdToArray(clients, data.groupChatId, socket.id);
-    })
+    });
 
     socket.on("check-status", () => {
       //Step 01
@@ -23,7 +23,7 @@ let userOnlineOffline = (io) => {
 
       //Step 02
       socket.broadcast.emit("server-send-when-new-user-online", socket.request.user._id);
-    })
+    });
 
 
     socket.on("disconnect", () => {
