@@ -42,9 +42,13 @@ $(document).ready(function () {
 
       //Step 09
       socket.emit("check-status");
-      
+
+      //Step 10
       $("#link-read-more-contacts").css("display", "inline-block");
       $(".lds-ripple-contacts").css("display", "none");
+
+      //Step 11
+      readMoreMessages();
     });
   });
 });

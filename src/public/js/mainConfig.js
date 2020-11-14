@@ -227,7 +227,9 @@ $(document).ready(function () {
 
   convertEmoji();
 
-  $("ul.people").find("a")[0].click();
+  if($("ul.people").find("a").length){
+    $("ul.people").find("a")[0].click();
+  }
 
   $("#video-chat-group").bind("click", function () {
     alertify.notify("Không khả dụng tính năng này với nhóm trò chuyện. Vui lòng thử lại với cuộc trò chuyện cá nhân","error", 7);
