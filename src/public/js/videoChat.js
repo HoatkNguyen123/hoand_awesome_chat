@@ -29,7 +29,7 @@ function closeVideoStream(stream) {
 $(document).ready(function () {
   //Step 02
   socket.on("server-send-listener-is-offline", function () {
-    alertify.notify("Người dùng này hiện không trực tuyến");
+    alertify.notify("Người dùng này hiện không trực tuyến", "error", 7);
   });
 
   let iceServerList = $("#ice-server-list").val();
