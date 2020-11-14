@@ -14,6 +14,10 @@ function nineScrollLeft() {
   });
 }
 
+function resizeNineScrollLeft(){
+  $(".left").getNiceScroll().resize();
+}
+
 function nineScrollRight(Id) {
   $(`.right .chat[data-chat = ${Id}]`).niceScroll({
     smoothscroll: true,
