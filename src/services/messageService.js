@@ -7,7 +7,7 @@ import { app } from "./../config/app";
 import _ from "lodash";
 import fsExtra from "fs-extra";
 
-const LIMIT_CONVERSATIONS_TAKEN = 1;
+const LIMIT_CONVERSATIONS_TAKEN = 15;
 const LIMIT_MESSAGES_TAKEN = 30;
 
 let getAllConversationItems = (currentUserId) => {
@@ -123,7 +123,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
     try {
       if (isChatGroup) {
         let getChatGroupReceiver = await chatGroupModel.getChatGroupById(receiverId);
-        
+
         if (!getChatGroupReceiver) {
           return reject(transErrors.conversation_notfound)
         }
@@ -136,7 +136,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
 
         let imageBuffer = await fsExtra.readFile(messageVal.path);
         let imageContentType = messageVal.mimetype;
-        let imageName = messageVal.originalname; 
+        let imageName = messageVal.originalname;
 
         let newMessageItem = {
           senderId: sender.id,
@@ -145,7 +145,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
           messageType: messageModel.messageTypes.IMAGE,
           sender: sender,
           receiver: receiver,
-          file: {data: imageBuffer, contentType: imageContentType, fileName: imageName},
+          file: { data: imageBuffer, contentType: imageContentType, fileName: imageName },
           createdAt: Date.now(),
         };
 
@@ -168,7 +168,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
 
         let imageBuffer = await fsExtra.readFile(messageVal.path);
         let imageContentType = messageVal.mimetype;
-        let imageName = messageVal.originalname; 
+        let imageName = messageVal.originalname;
 
         let newMessageItem = {
           senderId: sender.id,
@@ -177,7 +177,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
           messageType: messageModel.messageTypes.IMAGE,
           sender: sender,
           receiver: receiver,
-          file: {data: imageBuffer, contentType: imageContentType, fileName: imageName},
+          file: { data: imageBuffer, contentType: imageContentType, fileName: imageName },
           createdAt: Date.now(),
         };
 
@@ -197,7 +197,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
     try {
       if (isChatGroup) {
         let getChatGroupReceiver = await chatGroupModel.getChatGroupById(receiverId);
-        
+
         if (!getChatGroupReceiver) {
           return reject(transErrors.conversation_notfound)
         }
@@ -210,7 +210,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
 
         let attachmentBuffer = await fsExtra.readFile(messageVal.path);
         let attachmentContentType = messageVal.mimetype;
-        let attachmentName = messageVal.originalname; 
+        let attachmentName = messageVal.originalname;
 
         let newMessageItem = {
           senderId: sender.id,
@@ -219,7 +219,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
           messageType: messageModel.messageTypes.FILE,
           sender: sender,
           receiver: receiver,
-          file: {data: attachmentBuffer, contentType: attachmentContentType, fileName: attachmentName},
+          file: { data: attachmentBuffer, contentType: attachmentContentType, fileName: attachmentName },
           createdAt: Date.now(),
         };
 
@@ -242,7 +242,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
 
         let attachmentBuffer = await fsExtra.readFile(messageVal.path);
         let attachmentContentType = messageVal.mimetype;
-        let attachmentName = messageVal.originalname; 
+        let attachmentName = messageVal.originalname;
 
         let newMessageItem = {
           senderId: sender.id,
@@ -251,7 +251,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
           messageType: messageModel.messageTypes.FILE,
           sender: sender,
           receiver: receiver,
-          file: {data: attachmentBuffer, contentType: attachmentContentType, fileName: attachmentName},
+          file: { data: attachmentBuffer, contentType: attachmentContentType, fileName: attachmentName },
           createdAt: Date.now(),
         };
 
@@ -268,7 +268,7 @@ let addNewAttachment = (sender, receiverId, messageVal, isChatGroup) => {
 let readMoreAllChat = (currentUserId, skipPersonal, skipGroup) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let contacts = await contactModel.readMoreContacts(currentUserId, skipPersonal,  LIMIT_CONVERSATIONS_TAKEN);
+      let contacts = await contactModel.readMoreContacts(currentUserId, skipPersonal, LIMIT_CONVERSATIONS_TAKEN);
 
       let userConversationsPromise = contacts.map(async (contact) => {
         if (contact.contactId == currentUserId) {
@@ -318,10 +318,33 @@ let readMoreAllChat = (currentUserId, skipPersonal, skipGroup) => {
     }
   })
 }
+
+
+let readMore = (currentUserId, skipMessage, targetId, chatInGroup) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      if (chatInGroup) {
+        let getMessages = await messageModel.model.readMoreMessagesInGroup(targetId, skipMessage, LIMIT_MESSAGES_TAKEN);
+        getMessages = _.reverse(getMessages);
+
+        return resolve(getMessages);
+      }
+
+      let getMessages = await messageModel.model.readMoreMessagesInPersonal(currentUserId, targetId, skipMessage, LIMIT_MESSAGES_TAKEN);
+      getMessages = _.reverse(getMessages);
+
+      return resolve(getMessages);
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
 module.exports = {
   getAllConversationItems: getAllConversationItems,
   addNewTextEmoji: addNewTextEmoji,
   addNewImage: addNewImage,
   addNewAttachment: addNewAttachment,
-  readMoreAllChat: readMoreAllChat
+  readMoreAllChat: readMoreAllChat,
+  readMore: readMore
 };
